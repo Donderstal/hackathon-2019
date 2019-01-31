@@ -1,5 +1,3 @@
-
-
 // Set up speech recognition API, dependent on browser
 var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
@@ -7,6 +5,7 @@ var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEv
 
 var colors = ['hamburger', 'pizza', 'fries', 'turd sandwich'];
 var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
+var synth = window.speechSynthesis;
 
 var recognition = new SpeechRecognition();
 var speechRecognitionList = new SpeechGrammarList();
@@ -23,7 +22,7 @@ document.body.onclick = function() {
 }
 
 recognition.onresult = function(event) {
-    // The SpeechRecognitionEvent results property returns a SpeechRecognitionResultList object
+    // The SpeechRecognitionEvent results property returns a SpeechRecognitionRejsultList object
     // The SpeechRecognitionResultList object contains SpeechRecognitionResult objects.
     // It has a getter so it can be accessed like an array
     // The [last] returns the SpeechRecognitionResult at the last position.
@@ -34,7 +33,12 @@ recognition.onresult = function(event) {
     const voiceTranscript = registerVoiceInput(event)
     const confidence = event.results[0][0].confidence
     if (confidence < 0.75) {
-        /// code
+        var speechCon = new SpeechSynthesisUtterance("I'm sorry, I don't understand. Can you repeat yourself?");       
+        synth.speak(speechCon);
+    }
+    else {
+        var speech = new SpeechSynthesisUtterance("Your answer is: " + voiceTranscript + " . Say yes to confirm your answer");
+        synth.speak(speech);        
     }
 }
 
@@ -43,7 +47,7 @@ recognition.onspeechend = function() {
 }
 
 recognition.onnomatch = function(event) {
-  diagnostic.textContent = "I didn't recognise that color.";
+  diagnostic.textContent = "I didn't recognise that answer.";
 }
 
 recognition.onerror = function(event) {
