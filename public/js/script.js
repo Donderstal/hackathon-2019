@@ -33,8 +33,8 @@ recognition.onresult = function(event) {
     const voiceTranscript = registerVoiceInput(event)
     const confidence = event.results[0][0].confidence
     if (voiceTranscript == 'hey soda') {
-        var speech = new SpeechSynthesisUtterance("Hello, this is Soda");
-        synth.speak(speech);        
+        var speech = new SpeechSynthesisUtterance("Hello, this is Soda. Who am I speaking to?");
+        synth.speak(speech);
     }
     if (confidence < 0.75) {
         var speechCon = new SpeechSynthesisUtterance("I'm sorry, I don't understand. Can you repeat yourself?");       
