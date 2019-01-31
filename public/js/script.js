@@ -63,21 +63,37 @@ recognition.onerror = function(event) {
 
 
 function registerVoiceInput() {
+
     // Register input
 
     // 
 }
 
 function helloUser() {
+
     // bot : 'Hello. Is this Peter speaking?'
+
     // Peter : 'Yes, this is Peter.'
+
     // bot : 'Hello Peter. Do you want to start today's survey?'
+
     // Peter : 'Yes please.'
+
     // startSurvey()
 }
 
 function startSurvey() {
-    // get the survery from X
 
-    // 
+    // get the survey from X
+
+    // Ask the question
+
+    // Register the response OR ask question again
+
+    // Ask something like: are you sure your answer is X
+
+    // If yes: go to next question
+
+    // If no: ask question again
+
 }
