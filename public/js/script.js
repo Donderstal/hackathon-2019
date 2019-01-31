@@ -3,7 +3,6 @@ var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition
 var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList
 var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent
 
-
 var colors = ['hamburger', 'pizza', 'fries', 'turd sandwich'];
 var grammar = '#JSGF V1.0; grammar colors; public <color> = ' + colors.join(' | ') + ' ;'
 
@@ -45,21 +44,9 @@ recognition.onresult = function(event) {
   var last = event.results.length - 1;
   var voiceTranscript = event.results[last][0].transcript;
 
-  diagnostic.textContent = 'Result received: ' + voiceTranscript + '.';
   bg.style.backgroundColor = voiceTranscript;
   console.log('Confidence: ' + event.results[0][0].confidence);
-  colors.forEach((e) => {
-      let filled = false
-      console.log(e)
-      console.log(voiceTranscript)
-      console.log(e == voiceTranscript)
-      if (e == voiceTranscript) {
-        $('.hints').html('Hello sir or madam. Did you wish to purchase ' + e + '?')
-        $('.order-status').html('Order succes!')
-        $('.order-status-wrapper').addClass('alert-succes')
-        filled = true
-      }
-  })
+    console.log(voiceTranscript)
 }
 
 recognition.onspeechend = function() {
@@ -72,4 +59,25 @@ recognition.onnomatch = function(event) {
 
 recognition.onerror = function(event) {
   diagnostic.textContent = 'Error occurred in recognition: ' + event.error;
+}
+
+
+function registerVoiceInput() {
+    // Register input
+
+    // 
+}
+
+function helloUser() {
+    // bot : 'Hello. Is this Peter speaking?'
+    // Peter : 'Yes, this is Peter.'
+    // bot : 'Hello Peter. Do you want to start today's survey?'
+    // Peter : 'Yes please.'
+    // startSurvey()
+}
+
+function startSurvey() {
+    // get the survery from X
+
+    // 
 }
